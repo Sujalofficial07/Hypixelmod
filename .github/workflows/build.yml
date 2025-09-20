@@ -11,29 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # Checkout repo
       - uses: actions/checkout@v4
 
-      # 2. Set up Java 17
-      - name: Set up Java 17
-        uses: actions/setup-java@v3
+      # Set up JDK 17
+      - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
 
-      # 3. Install Gradle system-wide
+      # Install Gradle 8.3 system-wide (required by Loom)
       - name: Install Gradle
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
+          wget https://services.gradle.org/distributions/gradle-8.3-bin.zip
+          sudo unzip -d /opt/gradle gradle-8.3-bin.zip
+          sudo ln -s /opt/gradle/gradle-8.3/bin/gradle /usr/bin/gradle
+          gradle --version
 
-      # 4. Build the mod using system Gradle
+      # Build the mod
       - name: Build Mod
         run: gradle build --no-daemon
 
-      # 5. Upload the JAR artifact
-      - name: Upload Mod Artifact
-        uses: actions/upload-artifact@v4
+      # Upload artifact
+      - uses: actions/upload-artifact@v4
         with:
           name: skyblock-mod
           path: build/libs/
