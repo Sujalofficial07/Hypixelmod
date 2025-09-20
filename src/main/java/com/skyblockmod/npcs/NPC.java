@@ -9,10 +9,7 @@ public class NPC {
         this.dialog = dialog;
     }
 
-    public String getName() { return name; }
-    public String getDialog() { return dialog; }
-
     public void interact() {
-        System.out.println(name + ": " + dialog);
+        System.out.println(name + " says: " + dialog);
     }
 }
