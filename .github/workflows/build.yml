@@ -11,28 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
       - uses: actions/checkout@v4
 
-      # Set up JDK 17
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
 
-      # Install Gradle 
+      # Use Gradle wrapper
       - name: Build Mod
-        run: gradle build --no-daemon
-  
-      # Verify Gradle version
-      - name: Gradle Version
-        run: gradle --version
+        run: ./gradlew build
 
-      # Build the mod
-      - name: Build Mod
-        run: gradle build --no-daemon
-
-      # Upload artifact
       - uses: actions/upload-artifact@v4
         with:
           name: skyblock-mod
