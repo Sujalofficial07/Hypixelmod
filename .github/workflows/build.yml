@@ -20,13 +20,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # Install Gradle 8.3
-      - name: Install Gradle 8.3
-        run: |
-          wget https://services.gradle.org/distributions/gradle-8.3-bin.zip
-          unzip gradle-8.3-bin.zip -d gradle
-          echo "$PWD/gradle/gradle-8.3/bin" >> $GITHUB_PATH
-
+      # Install Gradle 
+      - name: Build Mod
+        run: gradle build --no-daemon
+  
       # Verify Gradle version
       - name: Gradle Version
         run: gradle --version
