@@ -1,18 +1,21 @@
 package com.skyblockmod;
 
+import com.skyblockmod.config.Keybinds;
+import com.skyblockmod.gui.SkyblockMenuScreen;
+import com.skyblockmod.items.ModItems;
+import com.skyblockmod.npcs.ModNPCs;
+import com.skyblockmod.islands.ModIslands;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SkyblockMod implements ModInitializer, ClientModInitializer {
-
-    public static final String MOD_ID = "skyblockmod";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger("SkyblockMod");
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Skyblock Mod Initialized!");
+        LOGGER.info("Initializing Skyblock Mod");
         ModItems.registerItems();
         ModNPCs.registerNPCs();
         ModIslands.initIslands();
