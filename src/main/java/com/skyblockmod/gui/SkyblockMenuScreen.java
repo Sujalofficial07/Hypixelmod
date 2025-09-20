@@ -1,7 +1,15 @@
 package com.skyblockmod.gui;
 
-public class SkyblockMenuScreen {
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+
+public class SkyblockMenuScreen extends Screen {
+
+    protected SkyblockMenuScreen() {
+        super(Text.literal("Skyblock Menu"));
+    }
+
     public static void registerScreens() {
-        // Placeholder for GUI screen registration
+        // In the future, register GUI screens
     }
 }
