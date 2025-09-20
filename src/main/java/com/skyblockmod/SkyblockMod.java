@@ -25,5 +25,23 @@ public class SkyblockMod implements ModInitializer, ClientModInitializer {
     public void onInitializeClient() {
         Keybinds.register();
         SkyblockMenuScreen.registerScreens();
+
     }
+    @Override
+    public void onInitialize() {
+    LOGGER.info("Initializing Skyblock Mod");
+    ModItems.registerItems();
+    ModNPCs.registerNPCs();
+    ModIslands.initIslands();
+
+    // Example: Give coins and buy an item
+    UUID testPlayer = UUID.randomUUID();
+    ProfileManager.getProfile(testPlayer).addCoins(200);
+    ModNPCs.testInteraction(testPlayer); // Should successfully buy Healing Wand
+
+    // Add a minion
+    MinionManager.addMinion(testPlayer, new Minion("Mining", 5));
+    MinionManager.produceAll(testPlayer, ProfileManager.getProfile(testPlayer));
+}
+    
 }
