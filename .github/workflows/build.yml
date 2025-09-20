@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
+      # Checkout repository
       - uses: actions/checkout@v4
 
       # Set up JDK 17
@@ -20,13 +20,16 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # Install Gradle 8.3 system-wide (required by Loom)
-      - name: Install Gradle
+      # Install Gradle 8.3
+      - name: Install Gradle 8.3
         run: |
           wget https://services.gradle.org/distributions/gradle-8.3-bin.zip
-          sudo unzip -d /opt/gradle gradle-8.3-bin.zip
-          sudo ln -s /opt/gradle/gradle-8.3/bin/gradle /usr/bin/gradle
-          gradle --version
+          unzip gradle-8.3-bin.zip -d gradle
+          echo "$PWD/gradle/gradle-8.3/bin" >> $GITHUB_PATH
+
+      # Verify Gradle version
+      - name: Gradle Version
+        run: gradle --version
 
       # Build the mod
       - name: Build Mod
