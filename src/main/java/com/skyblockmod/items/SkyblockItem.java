@@ -1,17 +1,14 @@
 package com.skyblockmod.items;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 
 public class SkyblockItem extends Item {
-    private final String abilityDescription;
+    private final String ability;
 
-    public SkyblockItem(Settings settings, String abilityDescription) {
+    public SkyblockItem(Settings settings, String ability) {
         super(settings);
-        this.abilityDescription = abilityDescription;
+        this.ability = ability;
     }
 
-    public String getAbilityDescription() {
-        return abilityDescription;
-    }
+    public String getAbility() { return ability; }
 }
